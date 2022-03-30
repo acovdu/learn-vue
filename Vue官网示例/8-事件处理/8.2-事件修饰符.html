@@ -22,7 +22,7 @@
     </form>
     <a href="www.baidu.com" @click.prevent>百度</a>
 
-    <p>.capture 捕获冒泡</p>
+    <p>.capture 捕获冒泡，会被最先触发</p>
     <div style="width: 200px;height: 200px;border: 1px solid blue" @click.capture="outClick">
         <div style="width: 160px;height: 160px;border: 1px solid red" @click="midClick">
             <div style="width: 120px;height: 120px;border: 1px solid orange" @click="innerClick"></div>
