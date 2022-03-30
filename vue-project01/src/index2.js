@@ -4,6 +4,7 @@ import './css/index.css'
 
 //导入样式（在webpack中，一切皆是模块，都可以通过ES6语法导入和使用）
 import './css/index.css'
+import './css/index.less'
 
 $(function () {
     console.log('xxxxx')

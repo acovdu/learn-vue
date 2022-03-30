@@ -159,6 +159,8 @@ module.exports = {
 
 在webpack中，一切皆是模块，都可以通过ES6语法导入和使用
 
+### 加载css
+
 在src目录下创建css目录，在css目录中创建index.css样式文件
 
 在src/index2.js文件中添加如下代码：
@@ -189,17 +191,35 @@ module.exports = {
 
 此时通过浏览器发现使用import导入的css样式文件生效
 
+### 加载less
 
+在src目录下创建css目录，在css目录中创建index.less样式文件
 
+在src/index2.js文件中添加如下代码：
 
+```js
+import './css/index.less'
+```
 
+ 安装less-loader和css-loader加载器：
 
+```js
+npm i less-loader@10.0.1 less@4.1.1 -D
+```
 
+在webpack.config.js中配置：
 
+```js
+module.exports = {
+    module: {
+        rules: [
+			{test: /\.less/, use: ['style-loader', 'css-loader', 'less-loader']}
+        ]
+    }
+}
+```
 
-
-
-
+运行项目，发现导入的less样式生效
 
 
 
