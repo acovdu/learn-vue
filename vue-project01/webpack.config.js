@@ -27,8 +27,13 @@ module.exports = {
     ],
     //开发服务配置
     devServer: {
-        open: true,
+        open: false,
         host: '127.0.0.1',
         port: '6980'
+    },
+    module: {
+        rules: [
+            {test: /\.css$/, use: ['style-loader', 'css-loader']}
+        ]
     }
 }

@@ -155,6 +155,82 @@ module.exports = {
 
 
 
+## 加载资源
+
+在webpack中，一切皆是模块，都可以通过ES6语法导入和使用
+
+在src目录下创建css目录，在css目录中创建index.css样式文件
+
+在src/index2.js文件中添加如下代码：
+
+```js
+import './css/index.css'
+```
+
+此时项目运行报错，提示需要一个合适的加载器来加载这个文件
+
+ 安装style-loader和css-loader加载器：
+
+```sh
+npm i style-loader@3.0.0 css-loader@5.2.6 -D
+```
+
+在webpack.config.js中配置：
+
+```js
+module.exports = {
+    module: {
+        rules: [
+            {test: /\.css$/, use: ['style-loader', 'css-loader']}
+        ]
+    }
+}
+```
+
+此时通过浏览器发现使用import导入的css样式文件生效
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
