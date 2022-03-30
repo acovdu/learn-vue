@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤、排序</title>
+</head>
+<body>
+<div id="app">
+    <p>计算属性</p>
+    <span v-for="num in evenNumbers">{{ num + '，' }}</span>
+    <p>使用方法</p>
+    <span v-for="num in even(nums)">{{ num + '，' }}</span>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            nums: [1, 2, 3, 4, 5, 6]
+        },
+        computed: {
+            evenNumbers: function () {
+                return this.nums.filter(function (num) {
+                    return num % 2 == 0;
+                })
+            }
+        },
+        methods: {
+            even: function (nums) {
+                return nums.filter(function (num) {
+                    return num % 2 == 0;
+                })
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单输入绑定基础用法</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="xxx">
+        <h3>v-model双向绑定数据</h3>
+        输入框：<input v-model="msg" placeholder="输入消息">
+        <p>msg：{{msg}}</p>
+        使用v-model，元素的默认值都会替换成Vue实列的数据值<br>
+
+        多行文本框：<textarea v-model="textMsg"></textarea>
+        <p>{{textMsg}}</p>
+
+        复选框：<input type="checkbox" value="123" v-model="checked">
+        <p>{{checked}}</p>
+
+        多个复选框：<label><input type="checkbox" value="A" v-model="names">A选项</label>
+        <label><input type="checkbox" value="B" v-model="names">B选项</label>
+        <p>{{names}}</p>
+
+        单选按钮：<label><input type="radio" value="man" v-model="sex">男</label>
+        <label><input type="radio" value="woman" v-model="sex">女</label>
+        <P>{{sex}}</P>
+
+        选择框：
+        <select v-model="area">
+            <option disabled value="">请选择</option>
+            <option value="beijing">北京</option>
+            <option>上海</option>
+            <option>深圳</option>
+        </select>
+        <p>{{area}}</p>
+
+        多选框：
+        <select multiple v-model="areas">
+            <option disabled value="">请选择</option>
+            <option value="beijing">北京</option>
+            <option>上海</option>
+            <option>深圳</option>
+        </select>
+        <p>{{areas}}</p>
+    </div>
+
+    <div class="xxx">
+        <h3>值绑定</h3>
+        输入框：<input type="text" v-model="name"/>
+        <p>{{name}}</p>
+        文本域：<textarea v-model="content"></textarea>
+        <p>{{content}}</p>
+        单选按钮：<label><input type="radio" value="man" v-model="gender">男</label>
+        <label><input type="radio" value="woman" v-model="gender">女</label>
+        <p>{{gender}}</p>
+        选择框数据初始化及数据绑定；<br>
+        单选择框：
+        <select v-model="book">
+            <option v-for="book in selectBooks">{{book.text}}</option>
+        </select>
+        <p>{{book}}</p>
+
+        复选框：<label><input type="checkbox" value="basketball" v-model="hobbies"/>篮球</label>
+        <label><input type="checkbox" value="football" v-model="hobbies">足球</label>
+        <p>{{hobbies}}</p>
+        多选择框：
+        <select multiple v-model="depts">
+            <option v-for="dept in selectDepts" :value="dept.value">{{dept.text}}</option>
+        </select>
+        <p>{{depts}}</p>
+    </div>
+    <div class="xxx">
+        <h3>修饰符</h3>
+        .lazy 输入完成，光标离开输入框数据才同步<br>
+        <input type="text" v-model.lazy="msg"/>
+        <p>{{msg}}</p>
+        .number 转数字<br>
+        <input type="number" v-model.number="count"/>
+       <p>{{count}}</p>
+        .trim 去首尾空格<br>
+        <input type="text" v-model="msg2"/>
+        <p>{{msg2}}</p>
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '赵六',
+            msg2: '',
+            content: '新闻内容...',
+            msg: '',
+            count: 0,
+            textMsg: '',
+            checked: true,
+            names: [],
+            sex: '',
+            gender: 'woman',
+            area: '',
+            areas: [],
+            hobbies: ['basketball'],
+            book: 'Java编程思想',
+            selectBooks: [
+                {text: 'Java编程思想'},
+                {text: 'C++ Primer'}
+            ],
+            depts: ['personnelDept'],
+            selectDepts: [
+                {text: '人事部', value: 'personnelDept'},
+                {text: '财政部', value: 'ministryOfFinance'}
+            ]
+        }
+    })
+</script>
+</html>

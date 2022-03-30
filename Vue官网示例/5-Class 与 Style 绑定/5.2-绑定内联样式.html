@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定内联样式</title>
+    <style type="text/css">
+        .xxx {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--  可以都使用驼峰形式，使用横杠形式的样式属性名需要引号引起来  -->
+    <div :style="{color:activeColor,fontFamily: fontF,'font-size':fontS+'px'}">
+        <p>绑定内联样式</p>
+    </div>
+    <div :style="styleObj">
+        <p>绑定内联样式对象</p>
+    </div>
+    <div :style="compStyle">
+        <p>使用计算对象</p>
+    </div>
+    <div :style="[styleObj,styleOtherObj]">
+        <p>使用数组语法</p>
+    </div>
+    <div :style="[autoPrefix]">
+        <p>自动添加前缀</p>
+    </div>
+    <div  :style="{display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
+        <p>多重值</p>
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            activeColor: 'blue',
+            fontS: 36,
+            fontF: '楷体',
+            transform: 'rotate(7deg)',
+            styleObj: {
+                color: 'red',
+                fontSize: '22px',
+                fontFamily: '微软雅黑',
+                fontWeight: 'bold'
+            },
+            styleOtherObj: {
+                textDecoration: 'underline'
+            },
+            autoPrefix: {
+                width: '100px',
+                height: '100px',
+                border: '1px solid red',
+                transform: 'rotate(7deg)'
+            }
+        },
+        computed: {
+            compStyle: function () {
+                return {
+                    color: 'orange',
+                    fontSize: '26px',
+                    fontFamily: '宋体',
+                    fontWeight: 'bold'
+                }
+            }
+        }
+    })
+</script>
+</html>

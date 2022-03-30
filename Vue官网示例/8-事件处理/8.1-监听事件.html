@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听事件</title>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="num+=1">数量加1</button>
+    <p>数量：{{num}}</p>
+
+    <button v-on:click="useMethod">触发方法</button>
+    <br>
+    <button v-on:click="innerHander('消息111')">传入消息</button>
+    <br>
+    <form action="123">
+        <button type="submit" v-on:click="innerHanderAndEvent('消息222',$event)">传入消息和DOM事件</button>
+    </form>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            num: 0,
+            name: '名称111'
+        },
+        methods: {
+            useMethod: function (event) {
+                alert('实例name属性值：' + this.name)
+                if (event) {
+                    //原生DOM事件
+                    alert('触发标签: ' + event.target.tagName)
+                }
+            },
+            innerHander: function (msg) {
+                alert(msg)
+            },
+            innerHanderAndEvent: function (msg, event) {
+                alert(msg)
+                if (event) {
+                    //阻止默认事件
+                    event.preventDefault();
+                }
+            }
+        }
+    })
+</script>
+</html>

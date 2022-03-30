@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侦听器</title>
+</head>
+<body>
+<div id="app">
+    问yes还是no：<input v-model="question">
+    <br>
+    <p>解答：{{answer}}</p>
+</div>
+
+</body>
+<!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+<!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 -->
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>-->
+<script src="../lib/vue.js"></script>
+<script src="../lib/lodash.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            question: '',
+            answer: '请提问！'
+        },
+        created: function () {
+            //创建后
+            console.info('created...')
+            // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+            this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+        },
+        watch: {
+            question: function (newVal, oldVal) {
+                console.info('旧问题:' + oldVal + ',新问题:' + newVal)
+                this.answer = '等待你停止输入...'
+                this.debouncedGetAnswer()
+            }
+        },
+        methods: {
+            getAnswer: function () {
+                console.info('执行getAnswer()方法...')
+                var vm = this;
+                axios.get('https://yesno.wtf/api')
+                    .then(function (resp) {
+                        console.info('响应:' + JSON.stringify(resp))
+                        vm.answer = resp.data.answer;
+                    })
+                    .catch(function (err) {
+                        vm.wanwer = '出现异常:' + err;
+                    });
+            }
+        }
+
+    })
+
+</script>
+</html>
+

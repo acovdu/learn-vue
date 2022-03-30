@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用插槽</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="xxx">
+        <!--    使用插槽    -->
+        <use-slot>I am sorry!</use-slot>
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    Vue.component('use-slot', {
+        template: '<div>\n' +
+            '    <strong>Error!</strong>\n' +
+            '    <slot></slot>\n' +
+            '</div>'
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {}
+    })
+</script>
+</html>
+

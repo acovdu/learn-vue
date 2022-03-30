@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插值</title>
+</head>
+<body>
+<div id="app">
+    <!-- 文本 -->
+    <!-- v-once 一次性插值-->
+    <span v-once>Message: {{msg}}</span>
+
+    <br/><br/>
+
+    <!--  原始HTML  -->
+    <!-- 使用{{}}输出原始值-->
+    <span>{{rawHtml}}</span>
+
+    <!--  v-html 输出并解析html代码  -->
+    <span v-html="rawHtml"></span>
+
+    <!--  Attribute 属性  -->
+    <span v-bind:id="objId">绑定属性id</span>
+    <br>
+    <br>
+    <!--    布尔属性-->
+    <!--  disableBtn 的值为false、null、undefined时，disabled属性不会被渲染出来-->
+    <button v-bind:disabled="disableBtn">按钮</button>
+    <!--    js表达式，只能使用表达式，不能使用js语句-->
+    <p>{{ num + 1 }}</p>
+    <p>{{ ok ? 'Yes':'No'}}</p>
+    <p>{{ msg.split('').reverse().join('') }}</p>
+    <div v-bind:id="'list-' + objId">绑定id属性</div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '消息...',
+            rawHtml: '<p>p标签..</p>',
+            objId: '001',
+            disableBtn: true,
+            num: 1,
+            ok: false
+        }
+    })
+</script>
+</html>
+subsite

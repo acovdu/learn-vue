@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在组件上使用 v-for</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <!--    2.2.0+版本以上，必须使用key     -->
+        <!--<li
+                is="my-comp"
+                v-for="(item,index) in news"
+                v-bind:title="item.title"
+                v-bind:key="item.id"
+                v-bind:id="item.id"
+                v-bind:index="index"
+        >
+        </li>-->
+    </ul>
+
+    <p>以下是添加新闻板块</p>
+    <form v-on:submit.prevent="addNew">
+        <label for="add-news">添加新闻</label>
+        <input v-model="newsTitle" id="add-news">
+        <button>提交</button>
+    </form>
+
+    <ul>
+        <li
+                is="news-list"
+                v-for="(item,index) in news"
+                v-bind:title="item.title"
+                v-bind:key="item.id"
+                v-on:remove="news.splice(index,1)"
+        >
+
+        </li>
+    </ul>
+
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    Vue.component('news-list', {
+        template: '<li>{{title}} <button v-on:click="$emit(\'remove\')">Remove</button></li>',
+        props: ['title']
+    })
+
+    Vue.component('my-comp', {
+        template: '<li>{{title}}</li>',
+        props: ['title']
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newsTitle: '',
+            news: [
+                {id: 1, title: '新闻一'},
+                {id: 2, title: '新闻二'},
+                {id: 3, title: '新闻三'},
+                {id: 4, title: '新闻四'}
+            ],
+            newNextId: 4
+        },
+        methods: {
+            addNew: function () {
+                this.news.push({
+                    id: this.newNextId++,
+                    title: this.newsTitle
+                })
+            }
+        }
+    })
+</script>
+</html>

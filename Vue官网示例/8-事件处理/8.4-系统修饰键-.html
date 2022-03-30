@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统修饰键</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="xxx">
+        使用组合键触发事件<br>
+        常用搭配组合键：Ctrl、Alt、Shift、Meta（Win系统为开始键）<br>
+        Ctrl + C 组合<br>
+        <input @keyup.ctrl.c="triggerBuild('Ctrl + C')"><br>
+    </div>
+
+    <div class="xxx" @click.ctrl="triggerBuild('按Ctrl键点击')">
+        <p>按Ctrl键点击</p>
+    </div>
+
+    <div class="xxx">
+        .exact修饰符<br>
+        问题：按下Ctrl与Shift和Alt任意组合再点击按钮A，都会触发<br>
+        <button @click.ctrl="triggerBuild('@click.ctrl')">按钮A</button>
+        <br>
+        只有按下Ctrl再点击按钮B才会触发<br>
+        <button @click.ctrl.exact="triggerBuild('@click.ctrl.exact')">按钮B</button>
+        <br>
+        没有按下Ctrl、Shift和Alt任意键时或任意组合键时点击按钮C才会触发<br>
+        <button @click.exact="triggerBuild('@click.exact')">按钮C</button>
+
+    </div>
+    <div class="xxx">
+        鼠标按钮修饰符<br>
+        <button @click.left="triggerBuild('左键点击')">左键点击</button><br>
+        <button @click.right="triggerBuild('右键点击')">右键点击</button><br>
+        <button @click.middle="triggerBuild('中键点击')">中键点击</button><br>
+
+    </div>
+
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            triggerBuild: function (key) {
+                console.info('触发按键：' + key)
+            }
+        }
+    })
+</script>
+</html>

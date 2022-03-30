@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听子组件事件</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <!--    <div class="xxx">
+            <p>测试监听子组件事件</p>
+            <div :style="{fontSize:postFontSize + 'em'}">
+                <test-comp-monitor
+                        v-for="blog in blogs"
+                        :blog="blog"
+                        @enlarge-font="postFontSize+=0.1"
+                >
+                </test-comp-monitor>
+            </div>
+        </div>-->
+
+    <!--  <div class="xxx">
+          <p>使用事件抛出一个值</p>
+          <div :style="{fontSize:postFontSize + 'em'}">
+              <test-comp-throw-value
+                      v-for="blog in blogs"
+                      :blog="blog"
+                      @enlarge-font="postFontSize+=$event"
+              >
+              </test-comp-throw-value>
+          </div>
+      </div>-->
+
+    <!--<div class="xxx">
+        <p>使用使用方法接收事件抛出的一个值</p>
+        <div :style="{fontSize:postFontSize + 'em'}">
+            <test-comp-throw-value
+                    v-for="blog in blogs"
+                    :blog="blog"
+                    @enlarge-font="boldFont"
+            >
+            </test-comp-throw-value>
+        </div>
+    </div>-->
+
+    <div class="xxx">
+        <p>组件上使用v-model</p>
+        <test-comp-use-model
+            v-model="searchText"
+        ></test-comp-use-model>
+    </div>
+</div>
+<!--<div>
+    <h3>{{blog.title}}</h3>
+    <div v-html="blog.content"></div>
+    <button @click="$emit('enlarge-font')">放大字体</button>
+</div>-->
+<!--<input :value="value" @input="$emit(input,$event.target.value)">-->
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    // Vue.component('test-comp-monitor', {
+    //     props: ['blog'],
+    //     template: '<div>\n' +
+    //         '    <h3>{{blog.title}}</h3>\n' +
+    //         '    <div v-html="blog.content"></div>\n' +
+    //         '    <button @click="$emit(\'enlarge-font\')">放大字体</button>\n' +
+    //         '</div>'
+    // })
+
+    // Vue.component('test-comp-throw-value', {
+    //     props: ['blog'],
+    //     template: '<div>\n' +
+    //         '    <h3>{{blog.title}}</h3>\n' +
+    //         '    <div v-html="blog.content"></div>\n' +
+    //         '    <button @click="$emit(\'enlarge-font\',0.1)">放大字体</button>\n' +
+    //         '</div>'
+    // })
+    Vue.component('test-comp-use-model',{
+        props:['value'],
+        template: '<input v-bind:value="value" v-on:input="$emit(\'input\',$event.target.value)">'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            blogs: [
+                {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
+                {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
+                {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
+            ],
+            postFontSize: 1,
+            searchText: ''
+        },
+        methods: {
+            boldFont: function (increase) {
+                this.postFontSize += increase;
+            }
+        }
+    })
+</script>
+</html>

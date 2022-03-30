@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+</head>
+<body>
+<div id="app">
+
+    <!--  v-if 指令  -->
+    <p v-if="seen">被看到。。</p>
+
+    <!--  参数  -->
+    <!--  能接收参数的指令，在指令后面以冒号表示  -->
+    <a v-bind:href="url">链接</a>
+
+    <br>
+    <!--  v-on 指令，用于事件函数绑定  -->
+    <button v-on:click="clickBtn">按钮</button>
+
+    <br>
+    <!--  动态参数 注意：中括号中的属性要统一小写，避免使用引号和空格，null值会移除绑定，其他非字符串会触发警告 -->
+    <a v-bind:[att_name]="url">动态绑定属性</a>
+    <br>
+    <button v-on:[event_name]="clickBtn">动态按钮</button>
+
+    <br>
+    <!--  修饰符  -->
+    <!--  v-on:submit.prevent 改变默认提交方法  -->
+    <form v-on:submit.prevent="onSubmit" action="http://182.151.12.39:18987/homePage/list">
+        <button type="submit">提交</button>
+    </form>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            seen: true,
+            url: 'http://www.baidu.com',
+            att_name: 'href',
+            event_name: 'click'
+        },
+        methods: {
+            clickBtn: function () {
+                alert('点了按钮。。')
+            },
+            onSubmit: function () {
+                alert('提交中。。。')
+            }
+        }
+    })
+</script>
+</html>

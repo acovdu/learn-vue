@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按键修饰符</title>
+    <style type="text/css">
+        .xxx {
+            border: 1px solid blue;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div :style="divStyle">
+        <form action="/aaa" @submit.prevent>
+
+            <p>按回车键触发提交方法</p>
+            名字: <input type="text" v-model="name" @keyup.enter="enterSubmit"/>
+            <!--        <p>{{name}}</p>-->
+        </form>
+    </div>
+    <div :style="divStyle">
+        <p>按键抬起触发</p>
+        <input @keyup="keyUp">
+    </div>
+    <div :style="divStyle">
+        <p>使用按键名，比如page down</p>
+        <input @keyup.page-down="triggerBuild('page down')"><br>
+        vue的示例按键名：<br>
+        .enter<br>
+        .tab<br>
+        .delete (捕获“删除”和“退格”键)<br>
+        .esc<br>
+        .space<br>
+        .up<br>
+        .down<br>
+        .left<br>
+        .right<br>
+    </div>
+    <div :style="divStyle">
+        <p>使用按键码，比如回车键，已经废弃，新浏览器可能不支持</p>
+        <input @keyup.13="triggerBuild('13')">
+    </div>
+    <div :style="divStyle">
+        自定义按键码,13 <回车键br>
+        <input @keyup.f1="triggerBuild('自定义按键码,13 回车键')">
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    //自定义按键码,13 回车键
+    Vue.config.keyCodes.f1=13;
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name: '按下回车键提交',
+            divStyle: {
+                width: 'auto',
+                height: 'auto',
+                border: '1px solid blue',
+                padding: '15px'
+            }
+        },
+        methods: {
+            enterSubmit: function () {
+                console.info('回车提交...')
+            },
+            keyUp: function () {
+                console.info('按键抬起触发..')
+            },
+            triggerBuild: function (key) {
+                console.info('触发按键：' + key)
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定 HTML Class</title>
+    <style type="text/css">
+        .active {
+            border: 1px solid red;
+        }
+
+        .static {
+            padding: 2px 2px;
+        }
+
+        .text-danger {
+            color: coral;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="static" v-bind:class="{ active: isActive }">
+        <p>绑定class</p>
+    </div>
+    <div v-bind:class="classObject">
+        <p>class绑定一个对象</p>
+    </div>
+    <div v-bind:class="computeAtt">
+        <p>class绑定一个计算属性</p>
+    </div>
+    <div v-bind:class="[activeClass,errorClass]">
+        <p>class 绑定一个数组</p>
+    </div>
+    <div v-bind:class="[isActive?activeClass:'',errorClass]">
+        <p>三元表达式控制class</p>
+    </div>
+    <div v-bind:class="[{active:isActive},errorClass]">
+        <p>绑定class数组中用对象语法</p>
+    </div>
+
+    <!--  组件添加class  -->
+    <my-component class="text-danger"></my-component>
+    <my-component v-bind:class="{active:isActive}"></my-component>
+</div>
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    Vue.component('my-component', {
+        template: '<p class="yyyyy">我是一个组件</p>'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            activeClass: 'active',
+            errorClass: 'text-danger',
+            classObject: {
+                active: true
+            }
+        },
+        computed: {
+            computeAtt: function () {
+                return {
+                    active: true
+                }
+            }
+        }
+    })
+
+
+</script>
+</html>

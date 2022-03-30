@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+</head>
+<body>
+<div id="app">
+    <div @click="clickDiv">
+        <p>点击继续传播，出现冒泡</p>
+        <button @click="clickBtn">按钮</button>
+    </div>
+    <div @click="clickDiv">
+        <p>.stop 阻止点击继续传播，父级div上的点击事件失效</p>
+        <button @click.stop="clickBtn">按钮</button>
+    </div>
+    <br>
+
+    <form action="/xxxx" @click.prevent="submitForm">
+        <p>.prevent 阻止默认事件的发生</p>
+        <button type="submit">注册</button>
+    </form>
+    <a href="www.baidu.com" @click.prevent>百度</a>
+
+    <p>.capture 捕获冒泡</p>
+    <div style="width: 200px;height: 200px;border: 1px solid blue" @click.capture="outClick">
+        <div style="width: 160px;height: 160px;border: 1px solid red" @click="midClick">
+            <div style="width: 120px;height: 120px;border: 1px solid orange" @click="innerClick"></div>
+        </div>
+    </div>
+
+    <p>.self 避免冒泡影响，只有点击自身才触发</p>
+    <div style="width: 200px;height: 200px;border: 1px solid blue" @click="outClick">
+        <div style="width: 160px;height: 160px;border: 1px solid red" @click.self="midClick">
+            <div style="width: 120px;height: 120px;border: 1px solid orange" @click="innerClick"></div>
+        </div>
+    </div>
+
+    <p>.once 只触发一次</p>
+    <button @click.once="clickDiv">点击触发一次</button>
+
+    <p>.passive 不阻止事件的默认行为</p>
+    <p>使用.passive 可以提高性能，让浏览器不用再去判断有没有调用event.preventDefault()</p>
+    <div></div>
+
+    <p>.native 用于自定义的组件上，在根节点上使用</p>
+    <comp-a @click.native="clickCompABtn"></comp-a>
+    <comp-b></comp-b>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    Vue.component('comp-a', {
+        template: '<button>组件a的按钮</button>'
+    })
+    Vue.component('comp-b', {
+        template: '<button @click.native="clickCompBBtn">组件b的按钮</button>'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            clickDiv: function () {
+                console.info('点击div..')
+            },
+            clickBtn: function () {
+                console.info('点击按钮...')
+            },
+            submitForm: function () {
+                console.info('执行表单提交方法')
+            },
+            outClick: function () {
+                console.info('最外层。。')
+            },
+            midClick: function () {
+                console.info('中间层。。')
+            },
+            innerClick: function () {
+                console.info('内层..')
+            },
+            clickCompABtn: function () {
+                console.info('点击组件a按钮..')
+            },
+            clickCompBBtn: function () {
+                console.info('点击组件b按钮..')
+            }
+        }
+    })
+</script>
+</html>

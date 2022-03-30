@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过 Prop 向子组件传递数据</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="xxx">
+        <test-comp-attr title="测试组件属性1"></test-comp-attr>
+        <test-comp-attr title="测试组件属性2"></test-comp-attr>
+
+        <!--    使用data中的数据    -->
+        <test-comp-attr
+                v-for="blog in blogs"
+                :key="blog.id"
+                :title="blog.title"
+        >
+        </test-comp-attr>
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+
+    Vue.component('test-comp-attr', {
+        props: ['title'],
+        template: '<h3>{{ title }}</h3>'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            blogs: [
+                {id: 1, title: '博客标题1'},
+                {id: 2, title: '博客标题2'},
+                {id: 3, title: '博客标题3'}
+            ]
+        }
+    })
+</script>
+</html>

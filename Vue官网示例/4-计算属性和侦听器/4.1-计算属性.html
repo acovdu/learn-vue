@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+</head>
+<body>
+<div id="app">
+
+    <!--  对于复杂的逻辑，都应该使用计算属性  -->
+    <p>Msg：{{ msg }}</p>
+    <!--  当msg改变时，计算值也会跟着变  -->
+    <p>Reverse Msg：{{ reverseMsg }}</p>
+
+    <!--  使用方法达到同样的效果  -->
+    <p>方法反转Msg：{{ reverseMsgMethod() }}</p>
+    <!--  计算有缓存，方法没有缓存 ，如果不需要缓存就用方法。当msg改变时计算属性和方法都将更新 -->
+</div>
+<div id="app2">
+    <p>监听名字:{{fullName}}</p>
+</div>
+<div id="app3">
+    <p>计算名字:{{fullName}}</p>
+</div>
+<div id="app4">
+    <p>计算set和get方法:{{fullName}}</p>
+</div>
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello',
+        },
+        methods: {
+            reverseMsgMethod: function () {
+                console.info('方法计算msg')
+                return this.msg.split('').reverse().join('');
+            }
+        },
+        computed: {
+            reverseMsg: function () {
+                console.info('计算msg')
+                return this.msg.split('').reverse().join('');
+            }
+        }
+    })
+
+    //计算属性 vs 侦听属性
+    var vm2 = new Vue({
+        el: '#app2',
+        data: {
+            firstName: '三',
+            lastName: '张',
+            fullName: '张三'
+        },
+        watch: {
+            firstName: function (val) {
+                console.info('firstName更新为:' + val)
+                this.fullName = this.lastName + val;
+            },
+            lastName: function (val) {
+                console.info('lastName更新为:' + val)
+                this.fullName = val + this.firstName;
+            }
+        }
+    })
+    //计算 用计算就就比较直观方便
+    var vm3 = new Vue({
+        el: '#app3',
+        data: {
+            firstName: '三',
+            lastName: '张'
+        },
+        computed: {
+            fullName: function () {
+                var name = this.lastName + this.firstName;
+                console.info('计算得出名字:' + name)
+                return name;
+            }
+        }
+    })
+
+    //计算属性的 setter
+    //默认提供get
+    var vm4 = new Vue({
+        el: '#app4',
+        data: {
+            firstName: '三',
+            lastName: '张'
+        },
+        computed: {
+            fullName: {
+                get: function () {
+                    var name = this.lastName + this.firstName;
+                    console.info('get名字:' + name)
+                    return name;
+                },
+                set: function (val) {
+                    if (val) {
+                        console.info('set名字:' + val)
+                        this.firstName = val.substr(1, val.length - 1);
+                        this.lastName = val.substr(0, 1);
+                    }
+                }
+            }
+        }
+    })
+    //直接赋值将调用set方法
+    // vm4.fullName = '王二111';
+
+</script>
+</html>

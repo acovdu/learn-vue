@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个根元素</title>
+    <style scoped>
+        @import "../css/common.css";
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <div class="xxx">
+        <test-comp-attr
+                v-for="blog in blogs"
+                :blog="blog"
+        >
+        </test-comp-attr>
+    </div>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    Vue.component('test-comp-attr', {
+        props: ['blog'],
+        template: '<div>\n' +
+            '    <h3>{{blog.title}}</h3>\n' +
+            '    <div v-html="blog.content"></div>\n' +
+            '</div>'
+    })
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            blogs: [
+                {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
+                {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
+                {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
+            ]
+        }
+    })
+</script>
+</html>
+enlarge

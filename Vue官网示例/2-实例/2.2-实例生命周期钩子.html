@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实例生命周期钩子</title>
+</head>
+<body>
+<div id="app">
+    <p>{{msg}}</p>
+</div>
+<div id="app2">
+    <p>{{msg}}</p>
+</div>
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        // el: '#app',
+        data: {
+            msg: '消息...'
+        },
+        beforeCreate: function () {
+            console.info('创建前..')
+        },
+        created: function () {
+            console.info('创建后..')
+        },
+        beforeMount: function () {
+            console.info('安装前..')
+        },
+        mounted: function () {
+            console.info('安装后..')
+        },
+        beforeUpdate: function () {
+            console.info('更新前..')
+        },
+        updated: function () {
+            console.info('更新后..')
+        },
+        beforeDestroy: function () {
+            console.info('销毁前..')
+        },
+        destroyed: function () {
+            console.info('销毁后..')
+        }
+    })
+    //创建Vue实例时没有指定el,安装方法是可调用的
+    vm.$mount('#app')
+    //销毁
+    vm.$destroy()
+</script>
+</html>

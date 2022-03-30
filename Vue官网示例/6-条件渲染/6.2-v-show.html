@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+</head>
+<body>
+<div id="app">
+    <div v-show="showMe">
+        <p>显示我？？</p>
+    </div>
+    <!--  v-show不支持template标签  -->
+    <template v-show="showMe">
+        <p>显示我？？</p>
+    </template>
+
+    <!--
+    v-if vs v-show
+    v-show初始渲染开销较大，v-if初始渲染开销较小
+    如果运行中需要频繁切换用v-show，运行中很少切换用v-if
+    -->
+
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            showMe: true
+        }
+    })
+</script>
+</html>

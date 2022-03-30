@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据与方法</title>
+</head>
+<body>
+<div id="app">
+
+    <p>{{msg}}</p>
+</div>
+<div id="app2">
+    <p>{{foo}}</p>
+    <button v-on:click="foo = 'baz'">改变foo</button>
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var data = {
+        a: 1,
+        msg: null
+    }
+
+    var vm = new Vue({
+        el: '#app',
+        data: data
+    })
+    console.info('vm.a==data.a: ' + (vm.a == data.a))
+    vm.a = 2;
+    console.info('vm.a=2后data.a的值:' + data.a)
+    data.a = 3;
+    console.info('data.a=3后vm.a的值:' + vm.a)
+
+    //后面添加的属性不是响应式的,如果需要响应式就先初始化
+    vm.msg = '实例化后更新消息'
+
+    //使用Object.freeze()阻止修改现有属性,响应系统无法追踪变化
+    var obj = {foo: 'bar'}
+    // Object.freeze(obj)
+    var vm2 = new Vue({
+        el: '#app2',
+        data: obj
+    })
+
+    //Vue暴露的属性和方法
+    console.info('vm.$data == data :' + (vm.$data == data))
+    console.info('vm.$el == document.getElementById(\'app\') :' + (vm.$el == document.getElementById('app')))
+    vm2.$watch('foo', function (newValue, oldValue) {
+        console.info('foo的旧值:' + oldValue)
+        console.info('foo的新值:' + newValue)
+    })
+
+</script>
+</html>

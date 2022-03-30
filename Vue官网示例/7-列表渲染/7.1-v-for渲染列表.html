@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+</head>
+<body>
+<ul id="app">
+
+    <p>遍历消息加父级消息</p>
+    <li v-for="item in items" :key="item.msg">
+        {{ item.msg }},{{parentMsg}}
+    </li>
+
+    <p>加索引</p>
+    <li v-for="(item,index) in items2" :key="item.msg">
+        {{ item.msg }}-{{ index}}
+    </li>
+
+    <p>遍历对象信息</p>
+    <li v-for="value in user">
+        {{ value }}
+    </li>
+
+    <p>遍历对象信息 使用 of</p>
+    <li v-for="value of user">
+        {{ value }}
+    </li>
+
+    <p>遍历对象信息和属性名</p>
+    <li v-for="(value,name) in user">
+        {{name}}:{{ value }}
+    </li>
+
+    <p>遍历对象信息和属性名加索引</p>
+    <li v-for="(value,name,index) in user">
+        {{ index+1 }}.{{ name }}:{{ value }}
+    </li>
+
+    <!--  尽量使用key，相当于数据库表的主键id  -->
+
+    <p>v-for遍历数字</p>
+    <li v-for="n in 10">{{ n }}</li>
+
+    <p>template上使用v-for</p>
+    <template v-for="item in items">
+        <li>{{item.msg}}</li>
+    </template>
+
+    <p>v-for 与 v-if 一块使用</p>
+    <li v-for="item in items" v-if="item.id != 1">
+        {{item.msg}}
+    </li>
+
+    <p>条件置于循环外层</p>
+    <template v-if="items.length > 0">
+        <li v-for="item in items">
+            {{item.msg}}
+        </li>
+    </template>
+
+</ul>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            parentMsg: '父级消息',
+            items: [
+                {id: 1, msg: '消息x'},
+                {id: 2, msg: '消息z'}
+            ],
+            items2: [
+                {msg: 'yyyy'},
+                {msg: 'xxxx'}
+            ],
+            user: {
+                name: '张三',
+                年龄: 20,
+                地址: '上海'
+            }
+        }
+    });
+    //数组替换
+    vm.items2 = vm.items2.filter(function (item) {
+        return item.msg.match('xxxx')
+    })
+    //数组变化
+    vm.items2.push({msg: 'zzzz'});
+</script>
+</html>

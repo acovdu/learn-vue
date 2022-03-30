@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+</head>
+<body>
+<div id="app">
+    <h5 v-if="awesome">很棒..</h5>
+    <h5 v-else>不是很棒</h5>
+    <div v-if="ok">
+        <div>if控制模块</div>
+    </div>
+    <template v-if="showTemplate">
+        <div>if控制模板</div>
+    </template>
+    <!--  使用else if  -->
+    <p v-if="selectTemplate == 'a'">显示a</p>
+    <p v-else-if="selectTemplate == 'b'">显示b</p>
+    <p v-else-if="selectTemplate == 'c'">显示c</p>
+    <p v-else>未知页面</p>
+
+    <!--  复用元素  -->
+    <template v-if="loginType=='username'">
+        <h4>用户名登陆</h4>
+        <input type="text" placeholder="输入用户名">
+    </template>
+    <template v-else>
+        <h4>邮箱登陆</h4>
+        <input type="text" placeholder="输入邮箱地址">
+    </template>
+    <button @click="switchLoginType">切换登陆类型</button>
+
+    <!--  用key管理可复用元素  -->
+    <template v-if="loginType=='username'">
+        <h4>用户名登陆</h4>
+        <input type="text" placeholder="输入用户名" key="username">
+    </template>
+    <template v-else>
+        <h4>邮箱登陆</h4>
+        <input type="text" placeholder="输入邮箱地址" key="email">
+    </template>
+    <button @click="switchLoginType">切换登陆类型时清空输入框</button>
+
+    <!--   不推荐v-if 和 v-for同时使用，因为v-for有更高的优先级 -->
+</div>
+
+</body>
+<script src="../lib/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            awesome: true,
+            ok: true,
+            showTemplate: true,
+            selectTemplate: 'a',
+            loginType: 'username'
+        },
+        methods: {
+            switchLoginType: function () {
+                this.loginType = this.loginType == 'username' ? 'email' : 'username';
+            }
+        }
+    })
+    // vm.awesome = false;
+
+</script>
+</html>
