@@ -213,13 +213,21 @@ npm i less-loader@10.0.1 less@4.1.1 -D
 module.exports = {
     module: {
         rules: [
-			{test: /\.less/, use: ['style-loader', 'css-loader', 'less-loader']}
+            {test: /\.less/, use: ['style-loader', 'css-loader', 'less-loader']}
         ]
     }
 }
 ```
 
 运行项目，发现导入的less样式生效
+
+### 加载图片
+
+base64图片优缺点
+
+优点：不用发起多次网络请求，一步到位
+
+缺点：转成base64后体积会大一点
 
 
 
