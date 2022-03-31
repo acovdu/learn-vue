@@ -269,6 +269,24 @@ module.exports = {
 
 运行项目，在浏览器发现导入图片
 
+控制图片超过多大时不转base64配置：
+
+```js
+module.exports = {
+    module: {
+        rules: [
+            {test: /\.jpg|png|gif$/, use:'url-loader?limit=11735'}//大于limit值时不转base64
+        ]
+    }
+}
+```
+
+### 高级语法处理
+
+#### 装饰器语法
+
+
+
 
 
 
