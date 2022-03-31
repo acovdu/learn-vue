@@ -285,15 +285,51 @@ module.exports = {
 
 #### 装饰器语法
 
+在index2.js中添加如下代码：
 
+```js
+//定义一个装饰器
+function info(target) {
+    //添加一个静态属性info
+    target.info = 'xxxx info..'
+}
+//使用装饰器
+@info
+class Person{}
+console.info(Person.info)
+```
 
+安装babel插件：
 
+```sh
+npm i babel-loader@8.2.2 @babel/core@7.14.6 @babel/plugin-proposal-decorators@7.14.5 -D
+```
 
+在webpack.config.js文件中配置：
 
+```js
+module.exports = {
+    module: {
+        rules: [
+            {test: /\.js$/, use:'babel-loader',exclude:'/node_modules/'}
+        ]
+    }
+}
+```
 
+创建babel.config.js配置文件，使用插件注册代码如下：
 
+```js
+module.exports = {
+    "plugins": [
+        ["@babel/plugin-proposal-decorators", {"legacy": true}]
+    ]
+}
+```
 
+找插件配置地址：https://babeljs.io/docs/en/babel-plugin-proposal-decorators
 
+运行项目，打开浏览器f12就会发现打印的静态属性值
 
 
 

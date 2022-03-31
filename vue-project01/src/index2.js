@@ -9,9 +9,19 @@ import './css/index.less'
 import testimg from './img/test.jpg'
 
 $(function () {
-    console.log('xxxxx')
+    // console.log('xxxxx')
     //odd 奇数，even 偶数 0是偶数
     $('li:odd').css('background-color', 'red')
     $('li:even').css('background-color', 'cyan')
     $('.imgBox').attr('src',testimg)
 })
+
+//定义一个装饰器
+function info(target) {
+    //添加一个静态属性info
+    target.info = 'xxxx info..'
+}
+//使用装饰器
+@info
+class Person{}
+console.info(Person.info)

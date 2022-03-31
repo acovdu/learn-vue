@@ -39,6 +39,7 @@ module.exports = {
             {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']},
             //处理图片文件的loader
             {test: /\.jpg|png|gif$/, use:'url-loader?limit=11735'},//<=limit值时才转base64
+            {test: /\.js$/, use:'babel-loader',exclude:'/node_modules/'}
         ]
     }
 }
