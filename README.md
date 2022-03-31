@@ -213,7 +213,7 @@ npm i less-loader@10.0.1 less@4.1.1 -D
 module.exports = {
     module: {
         rules: [
-            {test: /\.less/, use: ['style-loader', 'css-loader', 'less-loader']}
+            {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']}
         ]
     }
 }
@@ -225,13 +225,47 @@ module.exports = {
 
 base64图片优缺点
 
-优点：不用发起多次网络请求，一步到位
+| 优点                           | 缺点                     |
+| ------------------------------ | ------------------------ |
+| 不用发起多次网络请求，一步到位 | 转成base64后体积会大一点 |
 
-缺点：转成base64后体积会大一点
+在src目录下创建img目录，在img目录下放入一个test.jpg的图片
 
+在index.html文件中加入图片标签:
 
+```html
+<img src="" class="imgBox">
+```
 
+在index2.js文件中加入代码：
 
+```js
+import testimg from './img/test.jpg'
+
+$(function () {
+    $('.imgBox').attr('src',testimg)
+})
+```
+
+ 安装url-loader和file-loader加载器：
+
+```sh
+npm i url-loader@4.1.1 file-loader@6.2.0 -D
+```
+
+在webpack.config.js中配置：
+
+```js
+module.exports = {
+    module: {
+        rules: [
+            {test: /\.jpg|png|gif$/, use:'url-loader'}
+        ]
+    }
+}
+```
+
+运行项目，在浏览器发现导入图片
 
 
 

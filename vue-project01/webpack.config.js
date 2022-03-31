@@ -33,8 +33,12 @@ module.exports = {
     },
     module: {
         rules: [
+            //处理css文件的loader
             {test: /\.css$/, use: ['style-loader', 'css-loader']},
-            {test: /\.less/, use: ['style-loader', 'css-loader', 'less-loader']}
+            //处理less文件的loader
+            {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']},
+            //处理图片文件的loader
+            {test: /\.jpg|png|gif$/, use:'url-loader'},
         ]
     }
 }
