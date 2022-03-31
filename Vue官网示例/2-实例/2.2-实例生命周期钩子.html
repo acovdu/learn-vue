@@ -16,8 +16,10 @@
 <script>
     var vm = new Vue({
         // el: '#app',
-        data: {
-            msg: '消息...'
+        data: function () {
+            return {
+                msg: '消息...'
+            }
         },
         beforeCreate: function () {
             console.info('创建前..')

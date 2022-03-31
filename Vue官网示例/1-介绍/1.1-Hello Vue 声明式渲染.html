@@ -18,15 +18,19 @@
 <script>
     var app = new Vue({
         el: '#app',
-        data: {
-            message: 'Hello vue'
+        data: function () {
+            return {
+                message: 'Hello vue'
+            }
         }
     });
 
     var app2 = new Vue({
-        el:'#app-2',
-        data:{
-            message:'页面加载于 '+new Date().toLocaleDateString()
+        el: '#app-2',
+        data: function () {
+            return {
+                message: '页面加载于 ' + new Date().toLocaleDateString()
+            }
         }
     })
 </script>

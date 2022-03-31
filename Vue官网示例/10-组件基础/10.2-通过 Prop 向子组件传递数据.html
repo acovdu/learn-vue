@@ -35,12 +35,14 @@
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            blogs: [
-                {id: 1, title: '博客标题1'},
-                {id: 2, title: '博客标题2'},
-                {id: 3, title: '博客标题3'}
-            ]
+        data: function () {
+            return {
+                blogs: [
+                    {id: 1, title: '博客标题1'},
+                    {id: 2, title: '博客标题2'},
+                    {id: 3, title: '博客标题3'}
+                ]
+            }
         }
     })
 </script>

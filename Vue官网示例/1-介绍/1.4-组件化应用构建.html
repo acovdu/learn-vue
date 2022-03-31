@@ -26,12 +26,14 @@
     })
     var app = new Vue({
         el: '#app',
-        data: {
-            groceryList: [
-                {id: 5, text: '手机'},
-                {id: 6, text: '电脑'},
-                {id: 8, text: '耳机'}
-            ]
+        data: function () {
+            return {
+                groceryList: [
+                    {id: 5, text: '手机'},
+                    {id: 6, text: '电脑'},
+                    {id: 8, text: '耳机'}
+                ]
+            }
         }
     })
 </script>

@@ -43,8 +43,9 @@
         <input @keyup.13="triggerBuild('13')">
     </div>
     <div :style="divStyle">
-        自定义按键码,13 <回车键br>
-        <input @keyup.f1="triggerBuild('自定义按键码,13 回车键')">
+        自定义按键码,13
+        <回车键br>
+            <input @keyup.f1="triggerBuild('自定义按键码,13 回车键')">
     </div>
 </div>
 
@@ -52,17 +53,19 @@
 <script src="../lib/vue.js"></script>
 <script>
     //自定义按键码,13 回车键
-    Vue.config.keyCodes.f1=13;
+    Vue.config.keyCodes.f1 = 13;
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            name: '按下回车键提交',
-            divStyle: {
-                width: 'auto',
-                height: 'auto',
-                border: '1px solid blue',
-                padding: '15px'
+        data: function () {
+            return {
+                name: '按下回车键提交',
+                divStyle: {
+                    width: 'auto',
+                    height: 'auto',
+                    border: '1px solid blue',
+                    padding: '15px'
+                }
             }
         },
         methods: {

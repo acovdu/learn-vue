@@ -27,8 +27,10 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            showMe: true
+        data: function () {
+            return {
+                showMe: true
+            }
         }
     })
 </script>

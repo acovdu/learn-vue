@@ -31,12 +31,14 @@
 
     var app2 = new Vue({
         el: '#app2',
-        data: {
-            todos: [
-                {text: 'xxx'},
-                {text: 'yyy'},
-                {text: 'zzz'}
-            ]
+        data: function () {
+            return {
+                todos: [
+                    {text: 'xxx'},
+                    {text: 'yyy'},
+                    {text: 'zzz'}
+                ]
+            }
         }
     })
 </script>

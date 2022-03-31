@@ -51,12 +51,14 @@
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            isActive: true,
-            activeClass: 'active',
-            errorClass: 'text-danger',
-            classObject: {
-                active: true
+        data: function () {
+            return {
+                isActive: true,
+                activeClass: 'active',
+                errorClass: 'text-danger',
+                classObject: {
+                    active: true
+                }
             }
         },
         computed: {

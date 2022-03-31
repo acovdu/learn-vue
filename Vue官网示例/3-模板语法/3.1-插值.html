@@ -38,15 +38,17 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            msg: '消息...',
-            rawHtml: '<p>p标签..</p>',
-            objId: '001',
-            disableBtn: true,
-            num: 1,
-            ok: false
+        data: function () {
+            return {
+                msg: '消息...',
+                rawHtml: '<p>使用v-html插入的p标签..</p>',
+                objId: '001',
+                disableBtn: true,
+                num: 1,
+                ok: false
+            }
         }
     })
 </script>
 </html>
-subsite
+

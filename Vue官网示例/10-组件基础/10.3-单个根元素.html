@@ -24,7 +24,7 @@
 <script>
     Vue.component('test-comp-attr', {
         props: ['blog'],
-        template: '<div>\n' +
+        template: '<div class="blog-post">\n' +
             '    <h3>{{blog.title}}</h3>\n' +
             '    <div v-html="blog.content"></div>\n' +
             '</div>'
@@ -32,14 +32,15 @@
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            blogs: [
-                {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
-                {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
-                {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
-            ]
+        data: function () {
+            return {
+                blogs: [
+                    {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
+                    {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
+                    {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
+                ]
+            }
         }
     })
 </script>
 </html>
-enlarge

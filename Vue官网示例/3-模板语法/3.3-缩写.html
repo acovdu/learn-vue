@@ -22,10 +22,12 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            url: 'http://www.baidu.com',
-            att_name: 'href',
-            event_name: 'click'
+        data: function () {
+            return {
+                url: 'http://www.baidu.com',
+                att_name: 'href',
+                event_name: 'click'
+            }
         },
         methods: {
             clickBtn: function () {

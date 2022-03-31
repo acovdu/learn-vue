@@ -66,20 +66,22 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            parentMsg: '父级消息',
-            items: [
-                {id: 1, msg: '消息x'},
-                {id: 2, msg: '消息z'}
-            ],
-            items2: [
-                {msg: 'yyyy'},
-                {msg: 'xxxx'}
-            ],
-            user: {
-                name: '张三',
-                年龄: 20,
-                地址: '上海'
+        data: function () {
+            return {
+                parentMsg: '父级消息',
+                items: [
+                    {id: 1, msg: '消息x'},
+                    {id: 2, msg: '消息z'}
+                ],
+                items2: [
+                    {msg: 'yyyy'},
+                    {msg: 'xxxx'}
+                ],
+                user: {
+                    name: '张三',
+                    年龄: 20,
+                    地址: '上海'
+                }
             }
         }
     });

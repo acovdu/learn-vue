@@ -56,15 +56,17 @@
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            newsTitle: '',
-            news: [
-                {id: 1, title: '新闻一'},
-                {id: 2, title: '新闻二'},
-                {id: 3, title: '新闻三'},
-                {id: 4, title: '新闻四'}
-            ],
-            newNextId: 4
+        data: function () {
+            return {
+                newsTitle: '',
+                news: [
+                    {id: 1, title: '新闻一'},
+                    {id: 2, title: '新闻二'},
+                    {id: 3, title: '新闻三'},
+                    {id: 4, title: '新闻四'}
+                ],
+                newNextId: 4
+            }
         },
         methods: {
             addNew: function () {

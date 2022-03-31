@@ -30,8 +30,10 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            msg: 'Hello',
+        data: function () {
+            return {
+                msg: 'Hello',
+            }
         },
         methods: {
             reverseMsgMethod: function () {
@@ -50,10 +52,12 @@
     //计算属性 vs 侦听属性
     var vm2 = new Vue({
         el: '#app2',
-        data: {
-            firstName: '三',
-            lastName: '张',
-            fullName: '张三'
+        data: function () {
+            return {
+                firstName: '三',
+                lastName: '张',
+                fullName: '张三'
+            }
         },
         watch: {
             firstName: function (val) {
@@ -69,9 +73,11 @@
     //计算 用计算就就比较直观方便
     var vm3 = new Vue({
         el: '#app3',
-        data: {
-            firstName: '三',
-            lastName: '张'
+        data: function () {
+            return {
+                firstName: '三',
+                lastName: '张'
+            }
         },
         computed: {
             fullName: function () {
@@ -86,9 +92,11 @@
     //默认提供get
     var vm4 = new Vue({
         el: '#app4',
-        data: {
-            firstName: '三',
-            lastName: '张'
+        data: function () {
+            return {
+                firstName: '三',
+                lastName: '张'
+            }
         },
         computed: {
             fullName: {

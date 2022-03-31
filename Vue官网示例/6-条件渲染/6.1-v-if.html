@@ -50,12 +50,14 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            awesome: true,
-            ok: true,
-            showTemplate: true,
-            selectTemplate: 'a',
-            loginType: 'username'
+        data: function () {
+            return {
+                awesome: true,
+                ok: true,
+                showTemplate: true,
+                selectTemplate: 'a',
+                loginType: 'username'
+            }
         },
         methods: {
             switchLoginType: function () {

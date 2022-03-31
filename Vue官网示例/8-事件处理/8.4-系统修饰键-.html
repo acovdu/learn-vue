@@ -35,9 +35,12 @@
     </div>
     <div class="xxx">
         鼠标按钮修饰符<br>
-        <button @click.left="triggerBuild('左键点击')">左键点击</button><br>
-        <button @click.right="triggerBuild('右键点击')">右键点击</button><br>
-        <button @click.middle="triggerBuild('中键点击')">中键点击</button><br>
+        <button @click.left="triggerBuild('左键点击')">左键点击</button>
+        <br>
+        <button @click.right="triggerBuild('右键点击')">右键点击</button>
+        <br>
+        <button @click.middle="triggerBuild('中键点击')">中键点击</button>
+        <br>
 
     </div>
 
@@ -48,7 +51,9 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {},
+        data: function () {
+            return {}
+        },
         methods: {
             triggerBuild: function (key) {
                 console.info('触发按键：' + key)

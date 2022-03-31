@@ -49,7 +49,7 @@
     <div class="xxx">
         <p>组件上使用v-model</p>
         <test-comp-use-model
-            v-model="searchText"
+                v-model="searchText"
         ></test-comp-use-model>
     </div>
 </div>
@@ -80,21 +80,23 @@
     //         '    <button @click="$emit(\'enlarge-font\',0.1)">放大字体</button>\n' +
     //         '</div>'
     // })
-    Vue.component('test-comp-use-model',{
-        props:['value'],
+    Vue.component('test-comp-use-model', {
+        props: ['value'],
         template: '<input v-bind:value="value" v-on:input="$emit(\'input\',$event.target.value)">'
     })
 
     var vm = new Vue({
         el: '#app',
-        data: {
-            blogs: [
-                {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
-                {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
-                {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
-            ],
-            postFontSize: 1,
-            searchText: ''
+        data: function () {
+            return {
+                blogs: [
+                    {id: 1, title: '博客标题1', content: '<p>测试内容..</p>'},
+                    {id: 2, title: '博客标题2', content: '<p>测试内容2..</p>'},
+                    {id: 3, title: '博客标题3', content: '<p>测试内容3..</p>'}
+                ],
+                postFontSize: 1,
+                searchText: ''
+            }
         },
         methods: {
             boldFont: function (increase) {

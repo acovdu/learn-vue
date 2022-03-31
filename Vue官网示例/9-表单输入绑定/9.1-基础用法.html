@@ -81,7 +81,7 @@
         <p>{{msg}}</p>
         .number 转数字<br>
         <input type="number" v-model.number="count"/>
-       <p>{{count}}</p>
+        <p>{{count}}</p>
         .trim 去首尾空格<br>
         <input type="text" v-model="msg2"/>
         <p>{{msg2}}</p>
@@ -93,30 +93,32 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            name: '赵六',
-            msg2: '',
-            content: '新闻内容...',
-            msg: '',
-            count: 0,
-            textMsg: '',
-            checked: true,
-            names: [],
-            sex: '',
-            gender: 'woman',
-            area: '',
-            areas: [],
-            hobbies: ['basketball'],
-            book: 'Java编程思想',
-            selectBooks: [
-                {text: 'Java编程思想'},
-                {text: 'C++ Primer'}
-            ],
-            depts: ['personnelDept'],
-            selectDepts: [
-                {text: '人事部', value: 'personnelDept'},
-                {text: '财政部', value: 'ministryOfFinance'}
-            ]
+        data: function () {
+            return {
+                name: '赵六',
+                msg2: '',
+                content: '新闻内容...',
+                msg: '',
+                count: 0,
+                textMsg: '',
+                checked: true,
+                names: [],
+                sex: '',
+                gender: 'woman',
+                area: '',
+                areas: [],
+                hobbies: ['basketball'],
+                book: 'Java编程思想',
+                selectBooks: [
+                    {text: 'Java编程思想'},
+                    {text: 'C++ Primer'}
+                ],
+                depts: ['personnelDept'],
+                selectDepts: [
+                    {text: '人事部', value: 'personnelDept'},
+                    {text: '财政部', value: 'ministryOfFinance'}
+                ]
+            }
         }
     })
 </script>

@@ -21,9 +21,11 @@
 <script>
     var vm = new Vue({
         el: '#app',
-        data: {
-            question: '',
-            answer: '请提问！'
+        data: function () {
+            return {
+                question: '',
+                answer: '请提问！'
+            }
         },
         created: function () {
             //创建后
