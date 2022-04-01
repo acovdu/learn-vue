@@ -21,6 +21,8 @@ function info(target) {
     //添加一个静态属性info
     target.info = 'xxxx info..'
 }
+
+console.info(sd)
 //使用装饰器
 @info
 class Person{}

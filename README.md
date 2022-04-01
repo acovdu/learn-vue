@@ -400,11 +400,17 @@ module.exports = {
 
 此时运行npm run build命令，会自动删除之前的打包输出目录。
 
+### 常见问题
 
+解决报错行号和源码不匹配的问题，在webpack.config.js中配置：
 
-
-
-
+```js
+module.exports = {
+    //为安全考虑，生产不要使用source-map，折中方案是使用nosources-source-map
+    // devtool:'eval-source-map',//显示报错文件名行号源码
+    devtool:'nosources-source-map',//只显示报错文件名和行号
+}
+```
 
 
 
