@@ -15,8 +15,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 // 使用node.js语法 向外导出一个webpack配置对象
 module.exports = {
     //为安全考虑，生产不要使用source-map，折中方案是使用nosources-source-map
-    // devtool:'eval-source-map',//显示报错文件名行号源码
-    devtool:'nosources-source-map',//只显示报错文件名和行号
+    devtool:'eval-source-map',//显示报错文件名行号源码
+    // devtool:'nosources-source-map',//只显示报错文件名和行号
     //代表webpack运行模式，有 development 和 production 两个选项，
     // 特点：dev打包快，不压缩；prod打包慢，压缩，正好符合生产要求体积小的需求
     mode: "development",
@@ -48,5 +48,10 @@ module.exports = {
             {test: /\.jpg|png|gif$/, use: 'url-loader?limit=11734&outputPath=images'},
             {test: /\.js$/, use: 'babel-loader', exclude: '/node_modules/'}
         ]
+    },
+    resolve:{
+        alias:{
+            '@':path.join(__dirname,'./src/')
+        }
     }
 }

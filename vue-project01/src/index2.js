@@ -6,6 +6,8 @@ import './css/index.css'
 import './css/index.css'
 import './css/index.less'
 
+import './js/test/info'
+
 import testimg from './img/test.jpg'
 
 $(function () {
@@ -22,7 +24,7 @@ function info(target) {
     target.info = 'xxxx info..'
 }
 
-console.info(sd)
+// console.info(sd)
 //使用装饰器
 @info
 class Person{}

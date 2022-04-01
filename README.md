@@ -414,6 +414,18 @@ module.exports = {
 
 
 
+避免使用../../的路径，使用@代表./src/路径，在webpack.config.js中配置：
+
+```js
+module.exports = {
+    resolve:{
+        alias:{
+            '@':path.join(__dirname,'./src/')
+        }
+    }
+}
+```
+
 
 
 
