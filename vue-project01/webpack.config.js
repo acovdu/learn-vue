@@ -9,6 +9,9 @@ const htmlPlugin = new HtmlPlugin({
     filename: './index.html'//目标文件
 })
 
+//左边的{}代表结构赋值
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
 // 使用node.js语法 向外导出一个webpack配置对象
 module.exports = {
     //代表webpack运行模式，有 development 和 production 两个选项，
@@ -23,7 +26,8 @@ module.exports = {
     },
     //插件注册
     plugins: [
-        htmlPlugin
+        htmlPlugin,
+        new CleanWebpackPlugin(),
     ],
     //开发服务配置
     devServer: {
@@ -38,8 +42,8 @@ module.exports = {
             //处理less文件的loader
             {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']},
             //处理图片文件的loader，<=limit值时才转base64，outputPath指定图片打包输出目录
-            {test: /\.jpg|png|gif$/, use:'url-loader?limit=11734&outputPath=images'},
-            {test: /\.js$/, use:'babel-loader',exclude:'/node_modules/'}
+            {test: /\.jpg|png|gif$/, use: 'url-loader?limit=11734&outputPath=images'},
+            {test: /\.js$/, use: 'babel-loader', exclude: '/node_modules/'}
         ]
     }
 }

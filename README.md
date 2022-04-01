@@ -231,6 +231,8 @@ base64图片优缺点
 | ------------------------------ | ------------------------ |
 | 不用发起多次网络请求，一步到位 | 转成base64后体积会大一点 |
 
+
+
 在src目录下创建img目录，在img目录下放入一个test.jpg的图片
 
 在index.html文件中加入图片标签:
@@ -267,7 +269,9 @@ module.exports = {
 }
 ```
 
-运行项目，在浏览器发现导入图片
+运行项目，在浏览器发现导入的图片
+
+
 
 控制图片超过多大时不转base64配置：
 
@@ -280,6 +284,8 @@ module.exports = {
     }
 }
 ```
+
+
 
 ### 高级语法处理
 
@@ -331,6 +337,8 @@ module.exports = {
 
 运行项目，打开浏览器f12就会发现打印的静态属性值
 
+
+
 ### 打包发布
 
 在package.json文件中的scripts节点增加命令：
@@ -349,7 +357,9 @@ module.exports = {
 npm run build
 ```
 
-生成指定的包目录，不配置默认是dist目录，访问包目录中的index.html文件
+生成指定的打包输出目录，不配置默认是dist目录，访问包目录中的index.html文件
+
+
 
 打包配置js文件放到js目录，图片放在images目录，在webpack.config.js中配置：
 
@@ -366,6 +376,49 @@ module.exports = {
     }
 }
 ```
+
+
+
+打包时自动删除之前的打包输出目录，安装插件clean-webpack-plugin：
+
+```sh
+npm i -D clean-webpack-plugin
+```
+
+在webpack.config.js中配置：
+
+```js
+//左边的{}代表结构赋值
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+module.exports = {
+    //插件注册
+    plugins: [
+        new CleanWebpackPlugin(),
+    ]
+}
+```
+
+此时运行npm run build命令，会自动删除之前的打包输出目录。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
