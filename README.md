@@ -1,6 +1,6 @@
 ## 工程化
 
-### Vue项目初始化
+### Webpack项目初始化
 
 创建项目目录vue-project01，在项目目录里面执行如下脚本：
 
@@ -330,6 +330,42 @@ module.exports = {
 找插件配置地址：https://babeljs.io/docs/en/babel-plugin-proposal-decorators
 
 运行项目，打开浏览器f12就会发现打印的静态属性值
+
+### 打包发布
+
+在package.json文件中的scripts节点增加命令：
+
+```js
+{
+  "scripts": {
+    "build": "webpack --mode production"
+  }
+}
+```
+
+运行打包命令：
+
+```sh
+npm run build
+```
+
+生成指定的包目录，不配置默认是dist目录，访问包目录中的index.html文件
+
+打包配置js文件放到js目录，图片放在images目录，在webpack.config.js中配置：
+
+```js
+module.exports = {
+    output: {
+        filename: "js/bundle.js"//指定打包js目录
+    },
+    module: {
+        rules: [
+             //处理图片文件的loader，<=limit值时才转base64，outputPath指定图片打包输出目录
+            {test: /\.jpg|png|gif$/, use:'url-loader?limit=11734&outputPath=images'}
+        ]
+    }
+}
+```
 
 
 

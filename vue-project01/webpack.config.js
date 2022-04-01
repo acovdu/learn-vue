@@ -19,7 +19,7 @@ module.exports = {
     //output 打包输出配置
     output: {
         path: path.join(__dirname, 'dist01'),
-        filename: "bundle.js"
+        filename: "js/bundle.js"//指定打包js目录
     },
     //插件注册
     plugins: [
@@ -37,8 +37,8 @@ module.exports = {
             {test: /\.css$/, use: ['style-loader', 'css-loader']},
             //处理less文件的loader
             {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader']},
-            //处理图片文件的loader
-            {test: /\.jpg|png|gif$/, use:'url-loader?limit=11735'},//<=limit值时才转base64
+            //处理图片文件的loader，<=limit值时才转base64，outputPath指定图片打包输出目录
+            {test: /\.jpg|png|gif$/, use:'url-loader?limit=11734&outputPath=images'},
             {test: /\.js$/, use:'babel-loader',exclude:'/node_modules/'}
         ]
     }
