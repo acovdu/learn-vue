@@ -428,6 +428,42 @@ module.exports = {
 
 
 
+## vue项目工程化
+
+安装vue
+
+```
+cnpm install -g vue-cli
+```
+
+初始化vue项目
+
+```
+vue init webpack vue-proj02
+```
+
+
+
+安装element-ui
+
+```sh
+npm i element-ui -S
+```
+
+在main.js中加入
+
+```
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+```
+
+[Element文档](https://element.eleme.cn/#/zh-CN/component/quickstart)
+
+快速工程化：[Cooking](https://github.com/elemefe/cooking) [element-starter](https://github.com/ElementUI/element-starter)
+
+[Vue2.0 新手入门 — 从环境搭建到发布](https://www.runoob.com/w3cnote/vue2-start-coding.html)
+
 
 
 
